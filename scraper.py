@@ -21,14 +21,14 @@ import time
 
 
 # === CONFIG ===
-PRODUCT_URL = "https://shopee.co.id/Baseus-Bowie-WM01-Upgrade-Edition-True-Wireless-Earphones-TWS-Mini-Earbuds-Earphone-Bluetooth-i.223032375.22768552611"
+PRODUCT_URL = "https://shopee.co.id/Baseus-BP1-Pro-TWS-Adaptive-ANC-Hi-Res-LDAC-50dB-6-Mic-ENC-with-IP55-55H-Earbud-Earphone-Bluetooth-6.0-i.223032375.43550697202"
 COOKIE_FILE = "cookies.pkl"
 
 # CHROME_USER_DATA_DIR = r"C:\Users\Asus\AppData\Local\Google\Chrome\User Data"
 CHROME_USER_DATA_DIR = r"D:\chrome_selenium_profile"
 CHROME_PROFILE = "Default"   # keep this as Default
 
-OUTPUT_CSV = "shopee_reviews.csv"
+OUTPUT_CSV = "shopee_reviews_3.csv"
 OUTPUT_JSON = "shopee_reviews.json"
 
 # === SETUP CHROME WITH PROFILE ===
@@ -66,11 +66,11 @@ time.sleep(10)
 
 print("✅ Should now be logged in and at product page")
 
-review_section = WebDriverWait(driver, 20).until(
+review_section = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.CSS_SELECTOR, "div.shopee-product-comment-list"))
 )
 
-max_pages = 3
+max_pages = 167
 page_num = 1
 all_reviews = []
 
@@ -115,7 +115,7 @@ while page_num <= max_pages:
         else:
             next_button.click()
             page_num += 1
-            time.sleep(2)
+            time.sleep(1)
     except:
         print("🚩 Next button not found. Done.")
         break
